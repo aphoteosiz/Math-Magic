@@ -1,49 +1,60 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   static String id = 'login_page';
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          backgroundColor: Color(0x7DFE0000),
+          backgroundColor: Color.fromARGB(206, 254, 207, 0),
           body: Center(
               child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "Math \nMagic".toUpperCase(),
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Impact',
-                ),
-              ),
-              SizedBox(
-                height: 35.0,
-              ),
-              Row(
+              
+              Image.network('https://github.com/aphoteosiz/Math-Magic/blob/master/lib/assets/images/Logo.png?raw=true'),
+              //
+               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
-                    'Registrarse',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  GestureDetector(
+                    onTap:() {
+                        setState(() {
+                          print(2);
+                        });
+                      },
+                      child: Text(
+                      'Registrarse',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      ),
                   ),
-                  Text(
-                    'Iniciar Sesion',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.bold,
+                    GestureDetector(
+                      onTap:() {
+                        setState(() {
+                          print(1);
+                        });
+                      },
+                      child: Text(
+                      'Iniciar Sesion',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                                        ),
                     ),
-                  ),
                 ],
               ),
               SizedBox(
@@ -62,9 +73,12 @@ class LoginPage extends StatelessWidget {
                 height: 15.0,
               ),
               _buttonSingUp(),
-              
             ],
-          ))),
+              ),
+              // child: SizedBox(
+              //   height: 35.0,
+              ),// 
+      ),
     );
   }
 
@@ -95,7 +109,7 @@ class LoginPage extends StatelessWidget {
       );
       
   }
-  
+
      Widget _buttonSingUp() {
       return ElevatedButton(
         style: ElevatedButton.styleFrom(
@@ -110,11 +124,9 @@ class LoginPage extends StatelessWidget {
           color: Colors.white,
           fontSize: 20.0),
 
-        ,),
+        ),
         );
       }
-    
-  
 }
 
 // ignore: camel_case_types
