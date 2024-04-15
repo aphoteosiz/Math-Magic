@@ -61,22 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
               (selectLogin) ? _columnSingUp() : _columnLogin(), //operador ternario
-              SizedBox(
-                height: 25.0,
-              ),
-              _textFielName(),
-              SizedBox(
-                height: 15.0,
-              ),
-              _textFieldEmail(),
-              SizedBox(
-                height: 15.0,
-              ),
-              _textFieldPassword(),
-              SizedBox(
-                height: 15.0,
-              ),
-              _buttonSingUp(),
+              
             ],
               ),
               // child: SizedBox(
