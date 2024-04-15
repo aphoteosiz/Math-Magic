@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -10,6 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool selectLogin=false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -19,16 +21,17 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              
-              Image.network('https://github.com/aphoteosiz/Math-Magic/blob/master/lib/assets/images/Logo.png?raw=true'),
-              //
+              Container(
+                margin: EdgeInsets.only(top: 20.0),
+             child:  Image.asset('lib/assets/images/Logo.png'),
+               ),        //
                Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   GestureDetector(
                     onTap:() {
                         setState(() {
-                          print(2);
+                          selectLogin = true;
                         });
                       },
                       child: Text(
@@ -43,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
                     GestureDetector(
                       onTap:() {
                         setState(() {
-                          print(1);
+                         selectLogin=false;
                         });
                       },
                       child: Text(
@@ -53,10 +56,11 @@ class _LoginPageState extends State<LoginPage> {
                         fontSize: 25.0,
                         fontWeight: FontWeight.bold,
                       ),
-                                        ),
+                     ),
                     ),
                 ],
               ),
+              (selectLogin) ? _columnSingUp() : _columnLogin(), //operador ternario
               SizedBox(
                 height: 25.0,
               ),
@@ -117,17 +121,116 @@ class _LoginPageState extends State<LoginPage> {
           padding: EdgeInsets.symmetric(horizontal: 110.0, vertical: 20.0),
           ),
         
-        onPressed: (){
-          
+        onPressed: (){ 
         },
-        child: Text('Registrarme', style: TextStyle(
-          color: Colors.white,
-          fontSize: 20.0),
+        child: Text(
+      'Registrarme',
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 20.0,
+      ),
+    ),
+      );
+     }
+        
+        
+        Widget _columnSingUp(){
+        return Column(
+          children: [
+            SizedBox(
+            height: 15.0,
+          ),
+          _textFielName(),
+          SizedBox(
+            height: 15.0,
+          ),
+          _textFieldEmail(),
+          SizedBox(
+            height: 15.0,
+          ),
+          _textFieldPassword(),
+          SizedBox(
+            height: 15.0,
+          ),
+          _buttonSingUp(),
 
-        ),
+          ],
         );
-      }
+        }
+        Widget _columnLogin(){
+          return Column(
+            children: [
+              SizedBox(
+                height: 15.0,
+              ),
+              _textFieldEmailLogin(),
+              SizedBox(
+                height: 15.0,
+              ),
+              _textFieldPasswordLogin(),
+              SizedBox(
+                height: 15.0,
+              ),
+              Text(
+                'olvide mi contraseña',
+                style: TextStyle(
+                  fontSize: 15.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),
+                
+              ),
+              SizedBox(
+                height: 15.0,
+              ),
+              _buttonLogin()
+            ],
+          );
+        }
+        Widget _textFieldEmailLogin(){
+          return _textFieldGeneral(
+            labelText: 'Email', 
+            onChanged: (value)=>{},
+             hintText: 'Email',
+              keyboardType: TextInputType.emailAddress,
+               icon: Icons.email_outlined,
+              );
+        }
+         Widget _textFieldPasswordLogin(){
+          return _textFieldGeneral(
+           labelText: 'password',
+       onChanged: (value)=>{},
+       hintText: 'Password',
+       keyboardType: TextInputType.visiblePassword,
+               icon: Icons.lock_outline, 
+               obscureText: true,);
+        }
+        
+          _buttonLogin() {
+            return ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Color(0xffFF6969),
+      padding: EdgeInsets.symmetric(horizontal: 110.0, vertical: 20.0),
+    ),
+    onPressed: (){ 
+      
+    },
+    child: Text(
+      'Iniciar Sesión',
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 20.0,
+      ),
+    ),
+  );
 }
+          }
+        
+
+        
+        
+      
+
 
 // ignore: camel_case_types
 class _textFieldGeneral extends StatefulWidget {
@@ -176,3 +279,4 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
     );
   }
 }
+
