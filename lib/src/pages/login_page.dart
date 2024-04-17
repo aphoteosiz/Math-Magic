@@ -12,6 +12,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool selectLogin=false;
+  bool ResetPassword=false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -61,6 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
               (selectLogin) ? _columnSingUp() : _columnLogin(), //operador ternario
+               
               
             ],
               ),
@@ -117,6 +119,24 @@ class _LoginPageState extends State<LoginPage> {
     ),
       );
      }
+     Widget _buttonReset() {
+      return ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Color(0xffFF6969),
+          padding: EdgeInsets.symmetric(horizontal: 110.0, vertical: 20.0),
+          ),
+        
+        onPressed: (){ 
+        },
+        child: Text(
+      'Actualizar',
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 20.0,
+      ),
+    ),
+      );
+     }
         
         
         Widget _columnSingUp(){
@@ -156,6 +176,13 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: 15.0,
               ),
+               GestureDetector(
+                    onTap:() {
+                        setState(() {
+                          ResetPassword = true;
+                        });
+                      },
+               ),
               Text(
                 'olvide mi contraseña',
                 style: TextStyle(
@@ -171,6 +198,29 @@ class _LoginPageState extends State<LoginPage> {
               _buttonLogin()
             ],
           );
+        }
+        Widget _ResetPassword(){
+        return Column(
+          children: [
+            SizedBox(
+            height: 15.0,
+          ),
+          _textFielName(),
+          SizedBox(
+            height: 15.0,
+          ),
+          _textFieldEmail(),
+          SizedBox(
+            height: 15.0,
+          ),
+          _textFieldPassword(),
+          SizedBox(
+            height: 15.0,
+          ),
+          _buttonSingUp(),
+
+          ],
+        );
         }
         Widget _textFieldEmailLogin(){
           return _textFieldGeneral(
