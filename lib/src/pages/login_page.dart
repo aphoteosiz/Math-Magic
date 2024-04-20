@@ -2,6 +2,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:math_magic/src/pages/ResetPassword.dart';
+
 
 class LoginPage extends StatefulWidget {
   static String id = 'login_page';
@@ -12,7 +14,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool selectLogin=false;
-  bool ResetPassword=false;
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -71,7 +73,9 @@ class _LoginPageState extends State<LoginPage> {
               ),// 
       ),
     );
+    
   }
+ 
 
   Widget _textFielName() {
     return _textFieldGeneral(
@@ -119,26 +123,7 @@ class _LoginPageState extends State<LoginPage> {
     ),
       );
      }
-     Widget _buttonReset() {
-      return ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Color(0xffFF6969),
-          padding: EdgeInsets.symmetric(horizontal: 110.0, vertical: 20.0),
-          ),
-        
-        onPressed: (){ 
-        },
-        child: Text(
-      'Actualizar',
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: 20.0,
-      ),
-    ),
-      );
-     }
-        
-        
+     
         Widget _columnSingUp(){
         return Column(
           children: [
@@ -177,13 +162,14 @@ class _LoginPageState extends State<LoginPage> {
                 height: 15.0,
               ),
                GestureDetector(
-                    onTap:() {
-                        setState(() {
-                          ResetPassword = true;
-                        });
-                      },
-               ),
-              Text(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
+          );
+        },
+            
+              child: Text(
                 'olvide mi contraseña',
                 style: TextStyle(
                   fontSize: 15.0,
@@ -192,6 +178,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 
               ),
+               ),
               SizedBox(
                 height: 15.0,
               ),
@@ -199,29 +186,7 @@ class _LoginPageState extends State<LoginPage> {
             ],
           );
         }
-        Widget _ResetPassword(){
-        return Column(
-          children: [
-            SizedBox(
-            height: 15.0,
-          ),
-          _textFielName(),
-          SizedBox(
-            height: 15.0,
-          ),
-          _textFieldEmail(),
-          SizedBox(
-            height: 15.0,
-          ),
-          _textFieldPassword(),
-          SizedBox(
-            height: 15.0,
-          ),
-          _buttonSingUp(),
-
-          ],
-        );
-        }
+       
         Widget _textFieldEmailLogin(){
           return _textFieldGeneral(
             labelText: 'Email', 
