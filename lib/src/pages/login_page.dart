@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:math_magic/src/pages/Home.dart';
 import 'package:math_magic/src/pages/ResetPassword.dart';
 
 
@@ -46,6 +47,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       ),
                   ),
+                  
                     GestureDetector(
                       onTap:() {
                         setState(() {
@@ -113,6 +115,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
         
         onPressed: (){ 
+          
         },
         child: Text(
       'Registrarme',
@@ -213,7 +216,10 @@ class _LoginPageState extends State<LoginPage> {
       padding: EdgeInsets.symmetric(horizontal: 110.0, vertical: 20.0),
     ),
     onPressed: (){ 
-      
+       Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Home()),
+          );
     },
     child: Text(
       'Iniciar Sesión',
