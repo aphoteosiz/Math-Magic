@@ -717,11 +717,6 @@ class Primero extends StatelessWidget {
 // Respuesta Correcta: A
 
 // resolucion de ecuaciones
-
-// Problema: ¿Cuál es el valor de 𝑥 en la ecuación 
- 
-
-//PRIMER GRADO
 //¿Cual es el valor de x en la ecuacion 2x+5=15?
 // Respuesta A: 
 // x=5

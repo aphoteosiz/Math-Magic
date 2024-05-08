@@ -1,10 +1,13 @@
 
 
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/widgets.dart';
 import 'package:math_magic/src/pages/primer_Grado.dart';
+import 'package:math_magic/src/pages/segundo_Grado.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -81,7 +84,7 @@ class Home extends StatelessWidget {
                        Text('Ecuaciones lineales',
                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)
                        ),
-                       _buttonEntrar2(),
+                       _buttonEntrar2(context),
 
                     ],),
                 ),
@@ -151,7 +154,7 @@ class Home extends StatelessWidget {
     ),
       );
      }
-     Widget _buttonEntrar2() {
+     Widget _buttonEntrar2(BuildContext context) {
       return ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: Color.fromARGB(255, 105, 120, 255),
@@ -159,7 +162,10 @@ class Home extends StatelessWidget {
           ),
         
         onPressed: (){ 
-          
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Segundo()),
+          );
         },
         child: Text(
       'Entrar',
@@ -178,7 +184,7 @@ class Home extends StatelessWidget {
           ),
         
         onPressed: (){ 
-          
+           
         },
         child: Text(
       'Entrar',
