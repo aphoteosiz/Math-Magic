@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/widgets.dart';
+import 'package:math_magic/src/pages/TercerGrado.dart';
 import 'package:math_magic/src/pages/primer_Grado.dart';
 import 'package:math_magic/src/pages/segundo_Grado.dart';
 
@@ -81,7 +82,7 @@ class Home extends StatelessWidget {
                        Text('Resolucion de ecuaciones',
                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)
                        ),
-                       Text('Ecuaciones lineales',
+                       Text('Geometria',
                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)
                        ),
                        _buttonEntrar2(context),
@@ -116,7 +117,7 @@ class Home extends StatelessWidget {
                        Text('Diferentes tipos de variacion',
                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)
                        ),
-                       _buttonEntrar3(),
+                       _buttonEntrar3(context),
                        
                     ],),
                 ),
@@ -176,7 +177,7 @@ class Home extends StatelessWidget {
     ),
       );
      }
- Widget _buttonEntrar3() {
+ Widget _buttonEntrar3(BuildContext context) {
       return ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: Color.fromARGB(255, 105, 120, 255),
@@ -184,7 +185,10 @@ class Home extends StatelessWidget {
           ),
         
         onPressed: (){ 
-           
+            Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Tercero()),
+          );
         },
         child: Text(
       'Entrar',

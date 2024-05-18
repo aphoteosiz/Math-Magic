@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:math_magic/src/pages/Home.dart';
 import 'package:math_magic/src/pages/ResetPassword.dart';
+import 'package:math_magic/Auth_service.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -14,6 +15,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final DB_usuario=AuthService();
   bool selectLogin=false;
   
   @override
