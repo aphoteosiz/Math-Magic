@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "462806283724",
+    "project_id": "math-magic-a30b9",
+    "storage_bucket": "math-magic-a30b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462806283724:android:31943ba7f8a24d80b4d969",
+        "android_client_info": {
+          "package_name": "Flutter.Math"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAk370b_mogMZWjppREx5d144nJwxjMZwk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
