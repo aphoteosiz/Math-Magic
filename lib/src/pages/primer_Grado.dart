@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Primero extends StatefulWidget {
   @override
@@ -190,6 +191,11 @@ class _PrimeroState extends State<Primero> {
                 SizedBox(height: 10),
                 TextField(
                   controller: controllers[index],
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp('[A-C]')),// solo letras en mayuscula de la A a la C. A, B, C
+                    LengthLimitingTextInputFormatter(1), // solo permite un caracter
+                  ],
+                  textCapitalization: TextCapitalization.characters,
                   decoration: InputDecoration(
                     hintText: 'Escribe la respuesta correcta',
                     border: OutlineInputBorder(),

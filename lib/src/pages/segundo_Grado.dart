@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 class Segundo extends StatefulWidget {
@@ -210,6 +211,11 @@ class _SegundoState extends State<Segundo> {
                 SizedBox(height: 10),
                 TextField(
                   controller: controllers[index],
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp('[A-C]')),// solo letras en mayuscula de la A a la C. A, B, C
+                    LengthLimitingTextInputFormatter(1), // solo permite un caracter
+                  ],
+                  textCapitalization: TextCapitalization.characters,
                   decoration: InputDecoration(
                     hintText: 'escribe la respuesta correcta',
                     border: OutlineInputBorder(),
