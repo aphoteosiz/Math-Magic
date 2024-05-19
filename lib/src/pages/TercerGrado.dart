@@ -18,7 +18,8 @@ class _TerceroState extends State<Tercero> {
     9,
     (index) => TextEditingController(),
   );
-  final List <bool> validationResults = List.generate(9, (index) => true);
+
+  final List<bool> validationResults = List.generate(9, (index) => true);
 
   @override
   void dispose() {
@@ -29,13 +30,18 @@ class _TerceroState extends State<Tercero> {
   }
 
   void _verifyAnswers() {
-    
-    int correctCount = 0;
-    for (int i = 0; i < correctAnswers.length; i++) {
-      if (i < controllers.length && controllers[i].text.trim().toUpperCase() == correctAnswers[i]) {
-        correctCount++;
+    setState(() {
+      for (int i = 0; i < correctAnswers.length; i++) {
+        if (i < controllers.length && controllers[i].text.trim().toUpperCase() == correctAnswers[i]) {
+          validationResults[i] = true;
+        } else {
+          validationResults[i] = false;
+        }
       }
-    }
+    });
+
+    int correctCount = validationResults.where((result) => result).length;
+
     showCupertinoDialog(
       context: context,
       builder: (BuildContext context) {
@@ -209,14 +215,14 @@ class _TerceroState extends State<Tercero> {
                 TextField(
                   controller: controllers[index],
                   inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp('[A-C]')),// solo letras en mayuscula de la A a la C. A, B, C
-                    LengthLimitingTextInputFormatter(1), // solo permite un caracter
+                    FilteringTextInputFormatter.allow(RegExp('[A-C]')),
+                    LengthLimitingTextInputFormatter(1),
                   ],
                   textCapitalization: TextCapitalization.characters,
                   decoration: InputDecoration(
                     hintText: 'escribe la respuesta correcta',
                     border: OutlineInputBorder(),
-                    errorText: validationResults[index] ? null: 'respuesta incorrecta',
+                    errorText: validationResults[index] ? null : 'Respuesta incorrecta',
                   ),
                 ),
               ],
@@ -245,4 +251,10 @@ class _TerceroState extends State<Tercero> {
       ),
     );
   }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: Tercero(),
+  ));
 }

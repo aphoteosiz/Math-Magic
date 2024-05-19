@@ -21,6 +21,8 @@ class _PrimeroState extends State<Primero> {
     (index) => TextEditingController(),
   );
 
+  final List<bool> validationResults = List.generate(9, (index) => true);
+
   @override
   void dispose() {
     for (var controller in controllers) {
@@ -31,12 +33,18 @@ class _PrimeroState extends State<Primero> {
 
   // Método para verificar las respuestas
   void verifyAnswers() {
-    int score = 0;
-    for (int i = 0; i < correctAnswers.length; i++) {
-      if (controllers[i].text.trim().toUpperCase() == correctAnswers[i]) {
-        score++;
+    setState(() {
+      for (int i = 0; i < correctAnswers.length; i++) {
+        if (controllers[i].text.trim().toUpperCase() == correctAnswers[i]) {
+          validationResults[i] = true;
+        } else {
+          validationResults[i] = false;
+        }
       }
-    }
+    });
+
+    int score = validationResults.where((result) => result).length;
+
     showCupertinoDialog(
       context: context,
       builder: (BuildContext context) {
@@ -192,13 +200,14 @@ class _PrimeroState extends State<Primero> {
                 TextField(
                   controller: controllers[index],
                   inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp('[A-C]')),// solo letras en mayuscula de la A a la C. A, B, C
-                    LengthLimitingTextInputFormatter(1), // solo permite un caracter
+                    FilteringTextInputFormatter.allow(RegExp('[A-C]')),
+                    LengthLimitingTextInputFormatter(1),
                   ],
                   textCapitalization: TextCapitalization.characters,
                   decoration: InputDecoration(
                     hintText: 'Escribe la respuesta correcta',
                     border: OutlineInputBorder(),
+                    errorText: validationResults[index] ? null : 'Respuesta incorrecta',
                   ),
                 ),
               ],
@@ -225,4 +234,10 @@ class _PrimeroState extends State<Primero> {
       ),
     );
   }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: Primero(),
+  ));
 }

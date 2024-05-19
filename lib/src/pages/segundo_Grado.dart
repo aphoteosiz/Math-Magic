@@ -1,20 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
 class Segundo extends StatefulWidget {
   @override
   _SegundoState createState() => _SegundoState();
 }
+
 class _SegundoState extends State<Segundo> {
-  final List<String> correctAnswers=[
+  final List<String> correctAnswers = [
     'B', 'A', 'A',
     'B', 'C', 'B',
     'C', 'A', 'A',
-     
-    
   ];
 
   // Controladores de texto para cada pregunta
@@ -22,7 +19,10 @@ class _SegundoState extends State<Segundo> {
     9,
     (index) => TextEditingController(),
   );
-   @override
+
+  final List<bool> validationResults = List.generate(9, (index) => true);
+
+  @override
   void dispose() {
     for (var controller in controllers) {
       controller.dispose();
@@ -31,12 +31,18 @@ class _SegundoState extends State<Segundo> {
   }
 
   void _verifyAnswers() {
-    int correctCount = 0;
-    for (int i = 0; i < correctAnswers.length; i++) {
-      if (i< controllers.length&& controllers[i].text.trim() == correctAnswers[i]) {
-        correctCount++;
+    setState(() {
+      for (int i = 0; i < correctAnswers.length; i++) {
+        if (i < controllers.length && controllers[i].text.trim().toUpperCase() == correctAnswers[i]) {
+          validationResults[i] = true;
+        } else {
+          validationResults[i] = false;
+        }
       }
-    }
+    });
+
+    int correctCount = validationResults.where((result) => result).length;
+
     showCupertinoDialog(
       context: context,
       builder: (BuildContext context) {
@@ -80,7 +86,7 @@ class _SegundoState extends State<Segundo> {
                   child: Padding(
                     padding: EdgeInsets.all(20),
                     child: Text(
-                      'operaciones con decimales',
+                      'Operaciones con decimales',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -110,7 +116,7 @@ class _SegundoState extends State<Segundo> {
                   child: Padding(
                     padding: EdgeInsets.all(20),
                     child: Text(
-                      'resolucion de ecuaciones',
+                      'Resolución de ecuaciones',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -120,7 +126,7 @@ class _SegundoState extends State<Segundo> {
                 ),
                 _buildQuestionCard(
                   context,
-                  '¿Cual es el valor de x en la ecuacion 2x+5=15?',
+                  '¿Cuál es el valor de x en la ecuación 2x+5=15?',
                   ['5', '10', '-5'],
                   3,
                 ),
@@ -140,7 +146,7 @@ class _SegundoState extends State<Segundo> {
                   child: Padding(
                     padding: EdgeInsets.all(20),
                     child: Text(
-                      'Geometria',
+                      'Geometría',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -212,13 +218,14 @@ class _SegundoState extends State<Segundo> {
                 TextField(
                   controller: controllers[index],
                   inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp('[A-C]')),// solo letras en mayuscula de la A a la C. A, B, C
-                    LengthLimitingTextInputFormatter(1), // solo permite un caracter
+                    FilteringTextInputFormatter.allow(RegExp('[A-C]')),
+                    LengthLimitingTextInputFormatter(1),
                   ],
                   textCapitalization: TextCapitalization.characters,
                   decoration: InputDecoration(
                     hintText: 'escribe la respuesta correcta',
                     border: OutlineInputBorder(),
+                    errorText: validationResults[index] ? null : 'Respuesta incorrecta',
                   ),
                 ),
               ],
@@ -242,11 +249,14 @@ class _SegundoState extends State<Segundo> {
         'Verificar',
         style: TextStyle(
           color: Colors.white,
-          fontSize: 20.0,
-        ),
+          fontSize: 20.0),
       ),
     );
   }
+}
 
-  
+void main() {
+  runApp(MaterialApp(
+    home: Segundo(),
+  ));
 }
