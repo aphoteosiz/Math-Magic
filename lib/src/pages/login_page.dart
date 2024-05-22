@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:math_magic/src/pages/Home.dart';
-import 'package:math_magic/src/pages/ResetPassword.dart';
 import 'package:math_magic/Auth_service.dart';
+import 'package:math_magic/src/pages/ResetPassword.dart';
 
 class LoginPage extends StatefulWidget {
   static String id = 'login_page';
@@ -92,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
+              MaterialPageRoute(builder: (context) =>  ForgotPasswordPage()),
             );
           },
           child: Text(
